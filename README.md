@@ -110,3 +110,102 @@ pip install tensorflow
 
 ![image](https://user-images.githubusercontent.com/114469025/208314560-b447ad97-5750-4416-af3f-61eefb0c464e.png)
 
+
+
+## Задание 3
+### Построить визуальную модель работы перцептрона на сцене Unity.
+
+Я попытаюсь сделать модель из 2 шаров, которые после соприкосновения действуют согласно логике "И": приятгиваются или отталиваются.
+
+1) Добавил плоскость и два шара на сцену, удалил пустой объект с перцептроном
+
+![image](https://user-images.githubusercontent.com/100460661/204265748-535e8b67-8bb5-4357-affa-4431cdbd0416.png)
+
+2) Создал enum.
+
+``` cs 
+
+public enum Type
+{
+    Zero,
+    One
+}
+```
+
+А также скрипт для шара item, который наследует класс Perceptron:
+
+``` cs 
+using System;
+using UnityEngine;
+
+public class item : Perceptron
+{
+    public Type type;
+    private float speed = 0.5f;
+
+    public GameObject target;
+
+    private void Update() 
+    {
+        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed*Time.deltaTime);
+    }
+
+    private void OnCollisionEnter(Collision other) 
+    {
+        try
+        {
+            if (CalcOutput((int)this.type,(int)other.gameObject?.GetComponent<item>().type) == 0)
+            {
+                speed *= -1;
+            }
+        }
+        catch (NullReferenceException)
+        {
+            print("не шар");
+        }
+    }
+}
+```
+
+Шары будут притягиваться, если оба будут One.
+
+3) На шары навесил скрипт item, сделал настройку для логики "И" и добавил по RigidBody. Также добавил ссылку на друг друга, чтобы они в начале двигались навстречу.
+
+![image](https://user-images.githubusercontent.com/100460661/204271747-3759bb36-d23e-43fc-9606-e89a201da4d2.png)
+
+4) Пробуем запустить проект, добавив разные цифры для шаров.
+
+![image](https://user-images.githubusercontent.com/100460661/204271792-9b757582-a7bf-4e74-9aa7-604168f3f605.png)
+![image](https://user-images.githubusercontent.com/100460661/204271819-ac0b6ad7-2cfa-4dc7-a2ff-4c83c7877a8b.png)
+
+https://user-images.githubusercontent.com/100460661/204271926-7f3980cd-573e-456a-968f-431744932288.mp4
+
+5) Поменяем цифры местами.
+
+![image](https://user-images.githubusercontent.com/100460661/204272005-6427f6a5-2a4c-41d2-bf41-296e20b42820.png)
+![image](https://user-images.githubusercontent.com/100460661/204272044-230545c5-6efc-4060-a841-dcbfa864ea12.png)
+
+https://user-images.githubusercontent.com/100460661/204272116-ad797f96-a7bd-4ae6-a98e-9350cdd158d5.mp4
+
+6) Теперь сделаем оба шара единицами.
+
+![image](https://user-images.githubusercontent.com/100460661/204272195-5c32b49e-a567-48d9-a540-c9b23ab7861a.png)
+![image](https://user-images.githubusercontent.com/100460661/204272213-c1ba5a17-ae80-4ab9-a829-980192a1c625.png)
+
+https://user-images.githubusercontent.com/100460661/204270327-49a67879-c287-48c8-a588-d59709797486.mp4
+
+Шары притягиваются.
+
+7) Теперь сделаем оба шара нулями.
+
+![image](https://user-images.githubusercontent.com/100460661/204272282-75b10327-1b02-4c6e-b025-452e49a759c5.png)
+![image](https://user-images.githubusercontent.com/100460661/204272311-d3bba0d9-6039-4367-be77-e1d207357aee.png)
+
+https://user-images.githubusercontent.com/100460661/204272421-4c45bb78-1aa2-4e2b-aad2-8588fcc5a48c.mp4
+
+Шары после столкновения не притягиваются, поскольку скрипт действует согласно логике "И"
+
+
+
+## Выводы
+В этой лабораторной работе реализовал двоичную логику на перцептроне, а также построил визуальную модель его работы в юнити. Выяснилось, что с помощью перцептрона невозможно реализовать логику XOR.
