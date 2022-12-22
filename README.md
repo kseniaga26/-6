@@ -1,211 +1,165 @@
-# -6
-Структура отчета
+# Перцептрон
+Лабораторная №4 для АНАЛИЗ ДАННЫХ И ИСКУССТВЕННЫЙ ИНТЕЛЛЕКТ
 
-- Данные о работе: название работы, фио, группа, выполненные задания.
-- Цель работы.
-- Задание 1.
-- Код реализации выполнения задания. Визуализация результатов выполнения (если применимо).
-- Задание 2.
-- Код реализации выполнения задания. Визуализация результатов выполнения (если применимо).
-- Задание 3.
-- Код реализации выполнения задания. Визуализация результатов выполнения (если применимо).
-- Выводы.
+Отчет по лабораторной работе 2 выполнил(а):
+- Голубятникова Ксения Александровна
+- РИ210936
 
-## Цель работы
-Интеграция экономической системы в проект Unity и обучение ML-Agent. 
+Отметка о выполнении заданий (заполняется студентом):
+
+| Задание | Выполнение | Баллы |
+| ------ | ------ | ------ |
+| Задание 1 | * | 60 |
+| Задание 2 | * | 20 |
+| Задание 3 | # | 20 |
+
+знак "*" - задание выполнено; знак "#" - задание не выполнено;
 
 ## Задание 1
-### Интегрировать экономическую систему в проект Unity и обучить ML-Agent.
+### В проекте Unity реализовать прецептрон, который умеет производить вычисления:
 
-- Откроем проект юнити:
-![image_1](https://user-images.githubusercontent.com/103308669/204274064-7e609ffa-1742-44d3-a5f2-ad2fe304e5ac.png)
+![image](https://user-images.githubusercontent.com/114469025/204133039-8220dca8-e5e2-44dd-8e48-157847c20152.png)
+- Подключение С#-скрипта к сцене
 
-- Перед тем как перейти к началу обучения, запустим Anaconda Prompt и создадим виртуальное пространство с помощью следующих команд:
-```
-conda create -n MLAgents python=3.6
-conda activate MLAgents
-```
-
-- Устанавливаем нужные библиотеки:
-```
-pip install mlagents==0.28.0
-pip install torch~=1.7.1 -f https://download.pytorch.org/whl/torch_stable.html
-```
-
-- Далее запускаем обучение модели:
-![image_2](https://user-images.githubusercontent.com/103308669/204274918-837ff851-3805-414b-944d-0545a223cb25.png)
-![image_3](https://user-images.githubusercontent.com/103308669/204274944-506fe9d9-d66a-40f8-bf8e-e0a58f3cb221.png)
-
-https://user-images.githubusercontent.com/103308669/204280054-9e196b38-e355-417d-824e-91466409b0bf.mp4
-
-Шарик начинает двигаться от одного кубика к другому.
-
-- Чтобы ускорить процесс обучения – увеличим количество префабов TargetAreaEconomic до 12 и снова запустим обучение:
-
-https://user-images.githubusercontent.com/103308669/204280105-1be841d5-4461-4df4-b3bc-f085a7d0ac47.mp4
-
-- Далее построим графики для оценки результатов обучения. Для этого установим библиотеку TensorBoard с помощью следующей команды:
-```
-pip install tensorflow
-```
-
-![image_4](https://user-images.githubusercontent.com/103308669/204275932-3d54dae5-3892-4202-b163-dd6c58e2b79e.png)
-![image_5](https://user-images.githubusercontent.com/103308669/204275968-54fafe7f-761f-4b71-b250-5a31d7b259ba.png)
-
-- После завершения установки запустим TensorBoard и рассмотрим полученные графики стандартного агента:
-![image_6](https://user-images.githubusercontent.com/103308669/204276023-8af189e6-118f-4435-988a-fd7727484f35.png)
-![image_7](https://user-images.githubusercontent.com/103308669/204276045-8c6aa36e-d6b3-44c4-b1ac-42412c32ed61.png)
-
-
-## Задание 2
-### Изменить параметры файла yaml-агента, определить какие параметры и как влияют на обучение модели. Описать результаты, выведенные в TensorBoard.
-
-- Попробуем изменить параметр num_layers с 2 на 3:
-
-![image_8](https://user-images.githubusercontent.com/103308669/204276765-e8fc8c50-9182-4aab-924e-116875f858ac.png)
-![image_9](https://user-images.githubusercontent.com/103308669/204276789-a8fc364a-4a31-4298-b743-c8a185f49ad4.png)
-
-Получим такие графики: 
-
-![image_10](https://user-images.githubusercontent.com/103308669/204276865-43d751a2-b9b0-4a73-b412-48fa62e2fc76.png)
-
-- Изменим параметр batch_size с 1024 на 2048:
-
-![image_11](https://user-images.githubusercontent.com/103308669/204276962-a6d9ce9b-0a32-4a9b-b3d4-91cd524ba581.png)
-![image_12](https://user-images.githubusercontent.com/103308669/204276994-d04f85d7-2909-4d02-8af9-f11322f2c13b.png)
-
-Получим графики:
-![image_13](https://user-images.githubusercontent.com/103308669/204277035-27aeb253-b186-43f0-99c2-08dc8d82db01.png)
-
-- Изменим параметр epsilon с 0.2 на 0.3:
-
-![image_14](https://user-images.githubusercontent.com/103308669/204277158-25ef01eb-27d3-41d0-8517-f89b1dc7b8a3.png)
-![image_15](https://user-images.githubusercontent.com/103308669/204277186-0009d7b1-f422-4195-9da7-67fb2bfe9879.png)
-
-Получим графики:
-![image_16](https://user-images.githubusercontent.com/103308669/204277237-ead67d96-1296-493b-8489-86133fd8a419.png)
-
-- Изменим параметр lambd с 0.95 на 0.8:
-
-![image_17](https://user-images.githubusercontent.com/103308669/204277329-9b15186c-5900-414d-8741-5d749c455a6c.png)
-![image_18](https://user-images.githubusercontent.com/103308669/204277343-a9e06a55-0049-4edd-a18a-44d1bcb3dbad.png)
-
-Получим графики: 
-![image_19](https://user-images.githubusercontent.com/103308669/204299228-cb51112e-8b51-4e8a-8751-c84a8fb02ad0.png)
-
-- Изменим параметр buffer_size с 10240 до 100:
-
-![image_21](https://user-images.githubusercontent.com/103308669/204294530-4155ad79-bc24-4452-be24-3dd2d9f1a8f6.png)
-![image_22](https://user-images.githubusercontent.com/103308669/204294561-6ce52a1f-fddf-460a-8909-0145d572ba63.png)
-
-Получим графики: 
-![buffer_size](https://user-images.githubusercontent.com/103308669/204294656-ab36e157-56cf-4ec0-b964-f0347c3b83b9.png)
-
-Рассмотрев все графики можно сделать следующий вывод:
-при изменении всех перечисленных значений график Entropy либо растет быстрее чем при оригинальных значениях, либо не изменяется. При изменении всех значений, кроме epsilon, график Extrinsic Value Estimate тоже значительно растет вверх. Также можно заметить, что при изменении параметра batch_size уменьшается график вознаграждений. Остальные графики либо не меняются, либо меняются незначительно. В целом можно сказать, что изменение данных параметров положительно сказывается на обучении модели.
-
-## Выводы
-
-В ходе выполнения данной лабораторной работы, я научилась интегрировать экономическую систему в проект Unity в связке с MLAgent. Поняла как можно обучить ML-Агента справляться с инфляцией. Также понаблюдала за изменениями значений агентов при разных конфигурациях yaml файла.
-
-![image](https://user-images.githubusercontent.com/114469025/208314560-b447ad97-5750-4416-af3f-61eefb0c464e.png)
-
-
-
-## Задание 3
-### Построить визуальную модель работы перцептрона на сцене Unity.
-
-Я попытаюсь сделать модель из 2 шаров, которые после соприкосновения действуют согласно логике "И": приятгиваются или отталиваются.
-
-1) Добавил плоскость и два шара на сцену, удалил пустой объект с перцептроном
-
-![image](https://user-images.githubusercontent.com/100460661/204265748-535e8b67-8bb5-4357-affa-4431cdbd0416.png)
-
-2) Создал enum.
-
-``` cs 
-
-public enum Type
-{
-    Zero,
-    One
-}
-```
-
-А также скрипт для шара item, который наследует класс Perceptron:
-
-``` cs 
-using System;
+```py
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class item : Perceptron
+[System.Serializable]
+public class TrainingSet
 {
-    public Type type;
-    private float speed = 0.5f;
+	public double[] input;
+	public double output;
+}
 
-    public GameObject target;
+public class Perceptron : MonoBehaviour {
 
-    private void Update() 
-    {
-        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed*Time.deltaTime);
-    }
+	public TrainingSet[] ts;
+	double[] weights = {0,0};
+	double bias = 0;
+	double totalError = 0;
 
-    private void OnCollisionEnter(Collision other) 
-    {
-        try
-        {
-            if (CalcOutput((int)this.type,(int)other.gameObject?.GetComponent<item>().type) == 0)
-            {
-                speed *= -1;
-            }
-        }
-        catch (NullReferenceException)
-        {
-            print("не шар");
-        }
-    }
+	double DotProductBias(double[] v1, double[] v2) 
+	{
+		if (v1 == null || v2 == null)
+			return -1;
+	 
+		if (v1.Length != v2.Length)
+			return -1;
+	 
+		double d = 0;
+		for (int x = 0; x < v1.Length; x++)
+		{
+			d += v1[x] * v2[x];
+		}
+
+		d += bias;
+	 
+		return d;
+	}
+
+	double CalcOutput(int i)
+	{
+		double dp = DotProductBias(weights,ts[i].input);
+		if(dp > 0) return(1);
+		return (0);
+	}
+
+	void InitialiseWeights()
+	{
+		for(int i = 0; i < weights.Length; i++)
+		{
+			weights[i] = Random.Range(-1.0f,1.0f);
+		}
+		bias = Random.Range(-1.0f,1.0f);
+	}
+
+	void UpdateWeights(int j)
+	{
+		double error = ts[j].output - CalcOutput(j);
+		totalError += Mathf.Abs((float)error);
+		for(int i = 0; i < weights.Length; i++)
+		{			
+			weights[i] = weights[i] + error*ts[j].input[i]; 
+		}
+		bias += error;
+	}
+
+
+	double CalcOutput(double i1, double i2)
+	{
+		double[] inp = new double[] {i1, i2};
+		double dp = DotProductBias(weights,inp);
+		if(dp > 0) return(1);
+		return (0);
+	}
+
+	void Train(int epochs)
+	{
+		InitialiseWeights();
+		
+		for(int e = 0; e < epochs; e++)
+		{
+			totalError = 0;
+			for(int t = 0; t < ts.Length; t++)
+			{
+				UpdateWeights(t);
+				Debug.Log("W1: " + (weights[0]) + " W2: " + (weights[1]) + " B: " + bias);
+			}
+			Debug.Log("TOTAL ERROR: " + totalError);
+		}
+	}
+
+	void Start () {
+		Train(8);
+		
+		Debug.Log("Test 0 0: " + CalcOutput(0,0));
+		Debug.Log("Test 0 1: " + CalcOutput(0,1));
+		Debug.Log("Test 1 0: " + CalcOutput(1,0));
+		Debug.Log("Test 1 1: " + CalcOutput(1,1));		
+	}
+	
+	void Update () {
+		
+	}
 }
 ```
 
-Шары будут притягиваться, если оба будут One.
+- OR 
 
-3) На шары навесил скрипт item, сделал настройку для логики "И" и добавил по RigidBody. Также добавил ссылку на друг друга, чтобы они в начале двигались навстречу.
+Корректность работы: перцептрон обучился на 3 эпохе. Работает корректно.
 
-![image](https://user-images.githubusercontent.com/100460661/204271747-3759bb36-d23e-43fc-9606-e89a201da4d2.png)
+![image](https://user-images.githubusercontent.com/114469025/204133054-81874c49-8423-41b4-83b2-6db41cde250d.png)
 
-4) Пробуем запустить проект, добавив разные цифры для шаров.
+![image](https://user-images.githubusercontent.com/114469025/204133063-7d2bca43-7c9e-4527-bea4-7a9370d26531.png)
 
-![image](https://user-images.githubusercontent.com/100460661/204271792-9b757582-a7bf-4e74-9aa7-604168f3f605.png)
-![image](https://user-images.githubusercontent.com/100460661/204271819-ac0b6ad7-2cfa-4dc7-a2ff-4c83c7877a8b.png)
+- AND
 
-https://user-images.githubusercontent.com/100460661/204271926-7f3980cd-573e-456a-968f-431744932288.mp4
+Корректность работы: перцептрон обучился на 6 эпохе. Работает корректно.
 
-5) Поменяем цифры местами.
+![image](https://user-images.githubusercontent.com/114469025/204133079-14df3bf6-fe60-4dea-8d4f-01fb81d705d8.png)
 
-![image](https://user-images.githubusercontent.com/100460661/204272005-6427f6a5-2a4c-41d2-bf41-296e20b42820.png)
-![image](https://user-images.githubusercontent.com/100460661/204272044-230545c5-6efc-4060-a841-dcbfa864ea12.png)
+- NAND
 
-https://user-images.githubusercontent.com/100460661/204272116-ad797f96-a7bd-4ae6-a98e-9350cdd158d5.mp4
+Корректность работы: перцептрон обучился на 3 эпохе. Работает корректно.
 
-6) Теперь сделаем оба шара единицами.
+![image](https://user-images.githubusercontent.com/114469025/204133114-3d87e980-9f0b-402d-a6aa-0435d465a3be.png)
 
-![image](https://user-images.githubusercontent.com/100460661/204272195-5c32b49e-a567-48d9-a540-c9b23ab7861a.png)
-![image](https://user-images.githubusercontent.com/100460661/204272213-c1ba5a17-ae80-4ab9-a829-980192a1c625.png)
+- XOR
 
-https://user-images.githubusercontent.com/100460661/204270327-49a67879-c287-48c8-a588-d59709797486.mp4
+Корректность работы: перцептрон не обучается при любом количестве эпох и значение totalError так же равно 4. Так как из информации, данной в лекции и найденной в интернете, ясно что однослойного перцептрона для решения задачи XOR не достаточно.
 
-Шары притягиваются.
+![image](https://user-images.githubusercontent.com/114469025/204133104-28f4476e-193d-44e3-a885-35173c21538e.png)
 
-7) Теперь сделаем оба шара нулями.
+## Задание 2
+### Построить графики зависимости количества эпох от ошибки обучения.
 
-![image](https://user-images.githubusercontent.com/100460661/204272282-75b10327-1b02-4c6e-b025-452e49a759c5.png)
-![image](https://user-images.githubusercontent.com/100460661/204272311-d3bba0d9-6039-4367-be77-e1d207357aee.png)
+![image](https://user-images.githubusercontent.com/114469025/204133373-98e248ad-79c4-4771-97d7-5e10df9d2788.png)
+![image](https://user-images.githubusercontent.com/114469025/205047094-1ea5f27a-d249-4db3-9504-d2ae7a7c4b53.png)
+![image](https://user-images.githubusercontent.com/114469025/205047746-71f00049-11af-47f4-87cb-35730ac03342.png)
+![image](https://user-images.githubusercontent.com/114469025/205054008-878963ce-a3eb-4aef-aa0c-6500d5a0a640.png)
 
-https://user-images.githubusercontent.com/100460661/204272421-4c45bb78-1aa2-4e2b-aad2-8588fcc5a48c.mp4
-
-Шары после столкновения не притягиваются, поскольку скрипт действует согласно логике "И"
+Количество эпох обучения зависит от ошибки, которую выдает программа на тестовом наборе данных. Т.е. даже если на какой-то эпохе перцептрон удачно выполнил задачу, лучше взять чуть больше эпох обучения для избежания появления редких ошибок.
 
 
-
-## Выводы
-В этой лабораторной работе реализовал двоичную логику на перцептроне, а также построил визуальную модель его работы в юнити. Выяснилось, что с помощью перцептрона невозможно реализовать логику XOR.
